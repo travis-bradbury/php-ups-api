@@ -125,11 +125,6 @@ class InternationalForms implements NodeInterface
     private $products = [];
 
     /**
-     * @var Contacts
-     */
-    private $contacts;
-
-    /**
      * @var Discount
      */
     private $discount;
@@ -274,20 +269,6 @@ class InternationalForms implements NodeInterface
     }
 
     /**
-     * @return Contacts
-     */
-    public function getContacts() {
-        return $this->contacts;
-    }
-
-    /**
-     * @param Contacts $contacts
-     */
-    public function setContacts($contacts) {
-        $this->contacts = $contacts;
-    }
-
-    /**
      * @param null|DOMDocument $document
      *
      * @return DOMElement
@@ -332,9 +313,6 @@ class InternationalForms implements NodeInterface
         }
         if ($this->getFreightCharges() !== null) {
             $node->appendChild($this->getFreightCharges()->toNode($document));
-        }
-        if ($this->getContacts() !== null) {
-            $node->appendChild($this->getContacts()->toNode($document));
         }
         foreach ($this->products as $product) {
             $node->appendChild($product->toNode($document));
