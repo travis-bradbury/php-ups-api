@@ -60,6 +60,11 @@ class Address implements NodeInterface
     /**
      * @var string
      */
+    private $addressLine;
+    
+    /**
+     * @var string
+     */
     private $addressLine1;
 
     /**
@@ -178,6 +183,9 @@ class Address implements NodeInterface
     public function __construct($attributes = null)
     {
         if (null !== $attributes) {
+            if (isset($attributes->AddressLine)) {
+                $this->setAddressLine($attributes->AddressLine);
+            }
             if (isset($attributes->AddressLine1)) {
                 $this->setAddressLine1($attributes->AddressLine1);
             }
@@ -266,6 +274,9 @@ class Address implements NodeInterface
         }
 
         $node = $document->createElement('Address');
+        if ($this->getAddressLine()) {
+            $node->appendChild($document->createElement('AddressLine', $this->getAddressLine()));
+        }
         if ($this->getAddressLine1()) {
             $node->appendChild($document->createElement('AddressLine1', $this->getAddressLine1()));
         }
@@ -316,6 +327,26 @@ class Address implements NodeInterface
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getAddressLine()
+    {
+        return $this->addressLine;
+    }
+
+    /**
+     * @param string $addressLine
+     *
+     * @return $this
+     */
+    public function setAddressLine($addressLine)
+    {
+        $this->addressLine = $addressLine;
+
+        return $this;
+    }
+    
     /**
      * @return string
      */
