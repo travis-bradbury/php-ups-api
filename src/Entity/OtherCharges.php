@@ -68,7 +68,7 @@ class OtherCharges implements NodeInterface
         $this->monetaryValue = round($var, 2); // Max 2 decimals places
 
         if ($this->monetaryValue < 0) {
-            throw new \Exception('Freight charges cannot be negative');
+            throw new \Exception('Other charges cannot be negative');
         }
 
         if (strlen((string)$this->monetaryValue) > 15) {
